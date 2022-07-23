@@ -1,3 +1,5 @@
 .env
 vendor
 docker-go
+cover.out
+coverage.txt
