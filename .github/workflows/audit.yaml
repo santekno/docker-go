@@ -2,9 +2,9 @@ name: Audit
 
 on:
   push:
-    branches: [main,pipeline-cicd]
+    branches: [pipeline-cicd,heroku-ci]
   pull_request:
-    branches: [main]
+    branches: [heroku-ci]
 
 jobs:
   audit:
