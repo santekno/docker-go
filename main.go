@@ -2,24 +2,24 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
-	"os"
 
-	"github.com/joho/godotenv"
+	"github.com/gin-gonic/gin"
+	"github.com/santekno/docker-go/internal/handler"
 )
 
 func main() {
-	fmt.Println("GO Docker Tutorial")
+	fmt.Println("GO Docker Tutorial CI/CD")
 
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatalf("Error loading .env file")
-	}
-
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello World")
+	r := gin.Default()
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "hello",
+		})
 	})
+	r.GET("/world", handler.HelloWorld)
+	r.POST("/sum", handler.SumHandler)
+	r.POST("/multiply", handler.MultiplicationHandler)
 
-	log.Fatal(http.ListenAndServe(os.Getenv("PORT"), nil))
+	r.Run()
 }
