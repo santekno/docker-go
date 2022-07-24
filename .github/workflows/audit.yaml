@@ -1,0 +1,65 @@
+name: Audit
+
+on:
+  pull_request:
+    branches: [heroku-test]
+  push:
+    branches: [heroku-test]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Verify dependencies
+      run: go mod verify
+
+    - name: Build
+      run: make 
+
+    - name: Run go vet
+      run: go vet ./...
+
+  test:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
+      - name: Run tests
+        run: make test-coverage
+
+      - name: Upload Coverage report to CodeCov
+        uses: codecov/codecov-action@v1.0.0
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          file: ./coverage.txt
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
+      - name: Verify dependencies
+        run: go mod verify
+
+      - name: Install golint
+        run: go install golang.org/x/lint/golint@latest
+
+      - name: Run golint
+        run: golint ./...
+  
