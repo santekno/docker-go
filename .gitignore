@@ -1,1 +1,4 @@
+gitdocker-go
 vendor
+cover.out
+coverage.txt
