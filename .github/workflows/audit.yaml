@@ -3,6 +3,8 @@ name: Audit
 on:
   pull_request:
     branches: [heroku-test]
+  push:
+    branches: [heroku-test]
 
 jobs:
   audit:
