@@ -164,17 +164,6 @@ func TestDivideHandler(t *testing.T) {
 			wantResp: float64(2),
 		},
 		{
-			name: "expected",
-			args: args{
-				body: numbersBody{
-					X: 10,
-					Y: 5,
-				},
-			},
-			wantHttp: http.StatusOK,
-			wantResp: float64(5),
-		},
-		{
 			name: "internal server error",
 			args: args{
 				body: numbersBody{
