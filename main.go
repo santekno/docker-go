@@ -20,6 +20,7 @@ func main() {
 	r.GET("/world", handler.HelloWorld)
 	r.POST("/sum", handler.SumHandler)
 	r.POST("/multiply", handler.MultiplicationHandler)
+	r.POST("/divide", handler.DivideHandler)
 
 	r.Run()
 }
