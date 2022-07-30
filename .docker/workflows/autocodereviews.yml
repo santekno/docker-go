@@ -1,0 +1,31 @@
+name: golangci-lint
+"on":
+  pull_request:
+    branches: [main]
+env:
+  GOPATH: ${{ github.workspace }}/go
+  GO111MODULE: "on"
+jobs:
+  golangci:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Review
+        uses: reviewdog/action-golangci-lint@v2
+        with:
+          tool_name: "golangci-autoreview"
+          reporter: "github-pr-review"
+
+          # passing configuration flags to golangci-lint
+          #
+          # --new-from-rev=origin/main ==> (only scan all code code changes between current branch with main branch)
+          # --config=.golangci.yml ==> config path for golangci-lint configuration file
+          golangci_lint_flags: "--config=.golangci.yml --new-from-rev=origin/main"
+          go_version: 1.15.2
+        env: 
+          GOCACHE: ${{ github.workspace }}/go/Caches
+          GOLANGCI_LINT_CACHE: ${{ github.workspace }}/Caches
