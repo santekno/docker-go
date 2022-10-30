@@ -16,8 +16,23 @@ jobs:
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Get Dependency
+      run: go mod verify
+
+    - name: Run Test and Create Report
+      run: go test -v -short -coverprofile=cover.out ./...
+
     - name: SonarQube Scan
       uses: sonarsource/sonarqube-scan-action@master
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      with:
+        args: >
+          -Dsonar.exclusions=**/*loadtest*.go,**/docker/**,**/*.py,**/*mock*/**,**/_mocks/**,**/*_easyjson.go,**/src/db_modles/**,**/db_models/**,**/testfile/**,**/acceptancetest/**,**/*.html.go,**/*_test.go,**/*.java,**/vendor/**,**/*.js,**/*.jsx,**/*.ts,**/*.html,**/*.css,**/*.scss,**/*mock*.*,**/mock/**,**/mocks/**,**/files/**,**/dummy/**,**/testgenerator/**,wire.go,wire_gen.go,**/testdata/**,**/cmd/**,**/test/**,**/*.pb.go,**/constant/**,**/constants/**,**/const/**,**/cons/**,**/types/**,**/*types*.go,**/*type*.go,**/*constant*.go,**/*const*.go,**/*cons.go,**/dummy_*.go,**/docker/**,**/docs/**,**/models/**,**/*_models/**,**/dbmodels/**,**/mocking/** \
+          -Dsonar.go.coverage.reportPaths=cover.out -X
