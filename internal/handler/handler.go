@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -32,5 +33,14 @@ func MultiplicationHandler(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 		"result": body.X * body.Y,
+	})
+}
+
+func SampleHandler(c *gin.Context) {
+	var points []int
+	fmt.Println("show point for index '5'", points[5])
+
+	c.JSON(http.StatusOK, gin.H{
+		"result": 0,
 	})
 }
