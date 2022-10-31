@@ -1,7 +1,7 @@
 name: golangci-lint
 "on":
   pull_request:
-    branches: [main]
+    branches: [main, bootcamp-batch5]
 env:
   GOPATH: ${{ github.workspace }}/go
   GO111MODULE: "on"
