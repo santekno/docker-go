@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/santekno/docker-go/internal/handler"
+	"github.com/santekno/golang-app/internal/handler"
 )
 
 func main() {
