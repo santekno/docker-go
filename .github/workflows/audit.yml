@@ -61,7 +61,7 @@ jobs:
       - name: Get Dependency
         run: go mod verify
       - name: Run Test and Create Report
-        run: go test -v -short -coverprofile=cover.out ./...
+        run: make test-coverage
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
