@@ -32,3 +32,4 @@ jobs:
             -Dsonar.tests=.
             -Dsonar.exclusions=**/*_test.go,**/vendor/**,**/*mock*.*,**/files/**,**/docker/**,**/models/**
             -Dsonar.go.coverage.reportPaths=cover.out
+            -Dsonar.go.tests.reportPaths=cover.out
