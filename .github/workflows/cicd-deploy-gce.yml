@@ -6,7 +6,7 @@ name: CI/CD Golang and Deploy to GAE
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ deploy-with-cicd-google-app-engine ]
+    branches: [ deploy-app-engine ]
   # pull_request:
     # branches: [ deploy-app-engine ]
 
