@@ -21,5 +21,5 @@ func main() {
 	r.POST("/sum", handler.SumHandler)
 	r.POST("/multiply", handler.MultiplicationHandler)
 
-	r.Run()
+	_ = r.Run()
 }
