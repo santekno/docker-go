@@ -1,2 +1,5 @@
-vendor/
-docker-go
+vendor
+cover.*
+coverage.*
+golang-app
+report.json
