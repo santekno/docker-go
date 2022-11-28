@@ -1,4 +1,4 @@
-module github.com/santekno/docker-go
+module github.com/santekno/golang-app
 
 go 1.17
 

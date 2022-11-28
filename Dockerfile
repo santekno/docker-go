@@ -8,6 +8,6 @@ COPY . .
 
 RUN go mod tidy
 
-RUN go build -o /app/docker-go main.go
+RUN go build -o /app/golang-app main.go
 
-ENTRYPOINT ["/app/docker-go"]
+ENTRYPOINT ["/app/golang-app"]
