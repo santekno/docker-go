@@ -34,3 +34,27 @@ func MultiplicationHandler(c *gin.Context) {
 		"result": body.X * body.Y,
 	})
 }
+
+func DivideHandler(c *gin.Context) {
+	var body numbersBody
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.AbortWithError(http.StatusInternalServerError, err)
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"result": body.X / body.Y,
+	})
+}
+
+func TestingHandler(c *gin.Context) {
+	var body numbersBody
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.AbortWithError(http.StatusInternalServerError, err)
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"result": body.X / body.Y,
+	})
+}
