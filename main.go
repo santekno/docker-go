@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -21,5 +22,8 @@ func main() {
 	r.POST("/sum", handler.SumHandler)
 	r.POST("/multiply", handler.MultiplicationHandler)
 
-	r.Run()
+	err := r.Run()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
