@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/santekno/docker-go/internal/handler"
+	"github.com/santekno/golang-app/internal/handler"
 )
 
 func main() {
@@ -21,5 +22,8 @@ func main() {
 	r.POST("/sum", handler.SumHandler)
 	r.POST("/multiply", handler.MultiplicationHandler)
 
-	r.Run()
+	err := r.Run()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
