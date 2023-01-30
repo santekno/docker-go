@@ -14,7 +14,7 @@ type numbersBody struct {
 func SumHandler(c *gin.Context) {
 	var body numbersBody
 	if err := c.ShouldBindJSON(&body); err != nil {
-		c.AbortWithError(http.StatusInternalServerError, err)
+		err = c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
 
@@ -26,7 +26,7 @@ func SumHandler(c *gin.Context) {
 func MultiplicationHandler(c *gin.Context) {
 	var body numbersBody
 	if err := c.ShouldBindJSON(&body); err != nil {
-		c.AbortWithError(http.StatusInternalServerError, err)
+		err = c.AbortWithError(http.StatusInternalServerError, err)
 		return
 	}
 
