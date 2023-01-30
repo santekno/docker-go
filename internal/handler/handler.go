@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -14,7 +15,10 @@ type numbersBody struct {
 func SumHandler(c *gin.Context) {
 	var body numbersBody
 	if err := c.ShouldBindJSON(&body); err != nil {
-		err = c.AbortWithError(http.StatusInternalServerError, err)
+		errAbort := c.AbortWithError(http.StatusInternalServerError, err)
+		if errAbort != nil {
+			log.Printf("error %v", err)
+		}
 		return
 	}
 
@@ -26,7 +30,10 @@ func SumHandler(c *gin.Context) {
 func MultiplicationHandler(c *gin.Context) {
 	var body numbersBody
 	if err := c.ShouldBindJSON(&body); err != nil {
-		err = c.AbortWithError(http.StatusInternalServerError, err)
+		errAbort := c.AbortWithError(http.StatusInternalServerError, err)
+		if errAbort != nil {
+			log.Printf("error %v", err)
+		}
 		return
 	}
 
